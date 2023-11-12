@@ -4,6 +4,7 @@ import random
 import socket
 import sys
 from datetime import datetime
+
 import redis
 from flask import Flask, render_template, request
 
@@ -33,7 +34,7 @@ logger = logging.getLogger(__name__)
 handler = AzureLogHandler(
     connection_string="InstrumentationKey=d411583e-4a5a-42d0-884f-7ea5b24fabd9"
 )
-handler.setFormatter(logging.Formatter("%(traceId)s %(spanId)s %(pipmessage)s"))
+handler.setFormatter(logging.Formatter("%(traceId)s %(spanId)s %(message)s"))
 logger.addHandler(handler)
 # Logging custom Events
 logger.addHandler(
@@ -197,7 +198,7 @@ def index():
 
 if __name__ == "__main__":
     # comment line below when deploying to VMSS
-     app.run()  # local
+    app.run()  # local
     # uncomment the line below before deployment to VMSS
     #app.run(host="0.0.0.0", threaded=True, debug=True)  # remote
-    #app.run(host='0.0.0.0', threaded=True, debug=True, port=8000) # remote
+    #app.run(host='0.0.0.0', threaded=True, debug=True, port=5000) # remote
